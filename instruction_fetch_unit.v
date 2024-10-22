@@ -4,6 +4,7 @@ module instruction_fetch_unit (
     input [11:0] imm_address,
     input [11:0] imm_address_jmp,
     input beq, bneq, blt, bltu, bge, bgeu, //Branch
+    input jmp;
     
     output reg [31:0] pc,
     output reg [31:0] current_pc
@@ -18,7 +19,7 @@ module instruction_fetch_unit (
             pc <= pc + imm_address_jmp;
         end
     end
-    
+
     always @(posedge clk) begin
         if(reset) begin
             current_pc <= 0;
