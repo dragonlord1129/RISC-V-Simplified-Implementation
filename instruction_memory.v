@@ -94,7 +94,24 @@ Hence the instruction becomes  (0100 000)(0 0010) (0000 1)(000 - 111) (0001 1)(0
             memory[36] = 8'hB3;
 /////////////////////////Integer R-type///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+////////////////////////Integer I-type////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+    In this implementation of I-type we use register x4, and x5 as src and destination respectively
+        register mapping:
+            x4 = 00100;
+            x5 = 00101;
+            
+            funct3:  ADDI  = 000
+                     SLTI  = 001
+                     SLTUI = 010
+                     ANDI  = 011
+                     ORI   = 100
+                     XORI  = 101
+                     SLLI  = 110
+                     SRLI/SRAI  = 111 (depends on the immediate value)
+*/
+// ADDI = 0x00
+            memory[43]
         end
     end
 endmodule
