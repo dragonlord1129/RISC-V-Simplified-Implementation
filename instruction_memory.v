@@ -110,8 +110,53 @@ Hence the instruction becomes  (0100 000)(0 0010) (0000 1)(000 - 111) (0001 1)(0
                      SLLI  = 110
                      SRLI/SRAI  = 111 (depends on the immediate value)
 */
-// ADDI = 0x00
-            memory[43]
+// ADDI = 0x000202CC
+            memory[43] = 8'h00;
+            memory[42] = 8'h02;
+            memory[41] = 8'h02;
+            memory[40] = 8'hCC;
+
+// SLTI = 0x000212CC
+            memory[47] = 8'h00;
+            memory[46] = 8'h02;
+            memory[45] = 8'h12;
+            memory[44] = 8'hCC;
+// SLTUI = 0x000222CC 
+            memory[51] = 8'h00;
+            memory[50] = 8'h02;
+            memory[49] = 8'h22;
+            memory[48] = 8'hCC;
+// ANDI = 0x000232CC
+            memory[55] = 8'h00;
+            memory[54] = 8'h02;
+            memory[53] = 8'h32;
+            memory[52] = 8'hCC;
+// ORI = 0x000242CC
+            memory[59] = 8'h00;
+            memory[58] = 8'h02;
+            memory[57] = 8'h42;
+            memory[56] = 8'hCC;
+// XORI = 0x000252CC
+            memory[63] = 8'h00;
+            memory[62] = 8'h02;
+            memory[61] = 8'h52;
+            memory[60] = 8'hCC;
+// SLLI = 0x000262CC
+            memory[67] = 8'h00;
+            memory[66] = 8'h02;
+            memory[65] = 8'h62;
+            memory[64] = 8'hCC;
+// SRLI = 0x000272CC
+            memory[71] = 8'h00;
+            memory[70] = 8'h02;
+            memory[69] = 8'h72;
+            memory[68] = 8'hCC;
+// SRAI = 0x000272CD
+            memory[71] = 8'h00;
+            memory[70] = 8'h02;
+            memory[69] = 8'h72;
+            memory[68] = 8'hCD;
+
         end
     end
 endmodule
