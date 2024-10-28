@@ -38,7 +38,28 @@ module alu (
            end
            6'b001001: begin
                 result = rs1 >>> rs2;
-           end  
+           end
+           6'b111111: begin
+               result = rs1 + imm_val;
+           end
+           6'111110: begin
+               result = ($signed(rs1) < $signed(imm_val)) ? 1 : 0;
+           end
+           6'b111101: begin
+               result = (rs1 < imm_val)? 1 : 0;
+           end
+           6'b111100: begin
+               result = rs1 & rs2;
+           end
+           6'111-111: begin
+                result = rs1 | rs2;
+           end
+           6'111-111: begin
+                result = rs1 | rs2;
+           end
+           6'111-111: begin
+                result = rs1 | rs2;
+           end
         end
         endcase
     end
