@@ -9,7 +9,9 @@ module control_unit (
     output reg lb, lui, sw, // Load and Store
     output reg jmp
 );
-    parameter R-type = 7'b0110011
+    parameter R-type = 7'b0110011;
+    parameter I-type1 = 7'b1001100;
+    parameter I-type2 = 7'b1001101;
 
     always @(reset) begin
         if(reset) alu_control = 0;
@@ -60,6 +62,42 @@ module control_unit (
                   end  
                 endcase
             end 
+            I-type: begin
+                case(funct3)
+                    3'b000: begin
+                            alu_control = 6'b111111; // ADDI operation
+                        end
+                        3'b001: begin
+                            alu_control = 6'b111110; // SLTI operation
+                        end
+                        3'b010: begin
+                            alu_control = 6'b111101; // SLTUI operation
+                        end
+                        3'b011: begin
+                            alu_control = 6'111100; // ANDI operation
+                        end
+                        3'b100: begin
+                            alu_control = 6'b111011; // ORI operation
+                        end
+                        3'b101: begin
+                            alu_control = 6'b111010; // XORI operation
+                        end
+                        3'b110: begin
+                            alu_control = 6'b111001; // SLLI operation
+                        end
+                        3'b111: begin
+                            alu_control = 6'b111000; // SRLI operation
+                        end
+                        default : ; 
+                endcase
+            end
+            I-type2: begin
+                case(funct3)
+                    3'b111: begin
+                        alu_control = 6'b101010; // SRAI operation 
+                    end
+                endcase
+            end
             default: ;
         //////////////////////////////////Integer R-type complete///////////////////
         endcase
