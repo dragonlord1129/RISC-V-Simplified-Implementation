@@ -51,14 +51,17 @@ module alu (
            6'b111100: begin
                result = rs1 & rs2;
            end
-           6'111-111: begin
-                result = rs1 | rs2;
+           6'b111011: begin
+                result = rs1 | imm_val;
            end
-           6'111-111: begin
-                result = rs1 | rs2;
+           6'b111010: begin
+                result = rs1 ^ imm_val;
            end
-           6'111-111: begin
-                result = rs1 | rs2;
+           6'b111000: begin
+                result = rs1 << imm_val;
+           end
+           6'b101010: begin
+               result = rs1 >>> rs2;
            end
         end
         endcase

@@ -62,6 +62,7 @@ module control_unit (
                   end  
                 endcase
             end 
+/////////////////////////////////I-type/////////////////////////////////
             I-type: begin
                 case(funct3)
                     3'b000: begin
@@ -99,7 +100,7 @@ module control_unit (
                 endcase
             end
             default: ;
-        //////////////////////////////////Integer R-type complete///////////////////
+
         endcase
     end
 endmodule

@@ -13,7 +13,7 @@ module instruction_fetch_unit (
         if(reset) pc <=0;
         else if (beq == 0 && bneq == 0 && blt == 0 && bltu == 0 && bge == 0 && bgeu == 0 & jmp == 0) begin
             pc <= pc + 4;
-        end else if (beq == 0 || bneq == 0 || blt == 0 || bltu == 0 || bge == 0 || bgeu == 1 ) begin
+        end else if (beq == 0 || bneq == 0 || blt == 0 || bltu == 0 || bge == 0 || bgeu == 0 ) begin
             pc <= pc + imm_address;
         end else if(jmp) begin
             pc <= pc + imm_address_jmp;
