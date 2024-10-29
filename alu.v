@@ -2,11 +2,15 @@ module alu (
     input [31:0] rs1,
     input [31:0] rs2,
     input [5:0] alu_control,
-    input [31:0] imm_val,
-    input [31:0] shft_amnt,// shift amount
+    input [11:0] imm_val,
+   
 
     output reg [31:0] result
 );
+     reg [4:0] shft_amnt;
+     always @(*) begin
+         shft_amnt <= imm_val[4:0];
+     end
     always @(*) begin
         case(alu_control) begin
            6'b000000: begin
@@ -58,11 +62,13 @@ module alu (
                 result = rs1 ^ imm_val;
            end
            6'b111000: begin
-                result = rs1 << imm_val;
+               if(imm_val == 0000000) begin
+                    result = rs1 >> shft_amnt;
+               end else if (imm_val == 0100000) begin
+                    result = rs1 >>> shft_amnt;
+               end
            end
-           6'b101010: begin
-               result = rs1 >>> rs2;
-           end
+           
         end
         endcase
     end

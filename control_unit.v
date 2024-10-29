@@ -87,18 +87,12 @@ module control_unit (
                             alu_control = 6'b111001; // SLLI operation
                         end
                         3'b111: begin
-                            alu_control = 6'b111000; // SRLI operation
+                            alu_control = 6'b111000; // SRLI or SRAI operation 
                         end
                         default : ; 
                 endcase
             end
-            I-type2: begin
-                case(funct3)
-                    3'b111: begin
-                        alu_control = 6'b101010; // SRAI operation 
-                    end
-                endcase
-            end
+            
             default: ;
 
         endcase
