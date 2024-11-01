@@ -156,11 +156,42 @@ Hence the instruction becomes  (0100 000)(0 0010) (0000 1)(000 - 111) (0001 1)(0
             memory[70] = 8'h02;
             memory[69] = 8'h72;
             memory[68] = 8'hCD;
-//////////////////////////Control Transfer Instructions//////////////////
+//////////////////////////Control Transfer Instructions//////////////
+// JALR = 0x002080C5
             memory[75] = 8'h00;
-            memory[74] = 8'h02;
-            memory[73] = 8'h72;
-            memory[72] = 8'hCD;
+            memory[74] = 8'h00;
+            memory[73] = 8'h81;
+            memory[72] = 8'h55;
+// BEQ = 0x00009155
+            memory[79] = 8'h00;
+            memory[78] = 8'h00;
+            memory[77] = 8'h91;
+            memory[76] = 8'h55;
+// BNEQ = 0x0000A155
+            memory[83] = 8'h00;
+            memory[82] = 8'h00;
+            memory[81] = 8'hA1;
+            memory[80] = 8'h55;
+// BLT = 0x0000B155
+            memory[87] = 8'h00;
+            memory[86] = 8'h00;
+            memory[85] = 8'hB1;
+            memory[84] = 8'h55;
+// BLTU = 0x0000C155
+            memory[91] = 8'h00;
+            memory[90] = 8'h00;
+            memory[89] = 8'hC1;
+            memory[88] = 8'h55;
+// BGE = 0x0000D155
+            memory[95] = 8'h00;
+            memory[94] = 8'h00;
+            memory[93] = 8'hD1;
+            memory[92] = 8'h55;
+// BGEU = 0x0000E155
+            memory[99] = 8'h00;
+            memory[98] = 8'h00;
+            memory[97] = 8'hE1;
+            memory[96] = 8'h55;
         end
     end
 endmodule

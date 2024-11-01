@@ -15,7 +15,7 @@ module instruction_fetch_unit (
             pc <= pc + 4;
         end else if (beq == 0 || bneq == 0 || blt == 0 || bltu == 0 || bge == 0 || bgeu == 0 ) begin
             pc <= pc + imm_address;
-        end else if(jmp) begin
+        end else if(jmp) begin            
             pc <= pc + imm_address_jmp;
         end
     end

@@ -9,16 +9,16 @@ module control_unit (
     output reg lb, lui, sw, // Load and Store
     output reg jmp
 );
-    parameter R-type = 7'b0110011;
-    parameter I-type1 = 7'b1001100;
-    parameter I-type2 = 7'b1001101;
+    parameter R_type = 7'b0110011;
+    parameter I_type = 7'b1001100;
+    parameter Control_Transfer = 7'b1010101;
 
     always @(reset) begin
         if(reset) alu_control = 0;
     end    
     always @(funct7 or funct3 or opcode) begin
         case (opcode)
-            R-type: begin //////////////// R-type operation ////////////////////////
+            R_type: begin //////////////// R_type operation ////////////////////////
                 case(funct7)
                   7'b0000000: begin
                     case (funct3)
@@ -62,8 +62,8 @@ module control_unit (
                   end  
                 endcase
             end 
-/////////////////////////////////I-type/////////////////////////////////
-            I-type: begin
+/////////////////////////////////I_type/////////////////////////////////
+            I_type: begin
                 case(funct3)
                     3'b000: begin
                             alu_control = 6'b111111; // ADDI operation
@@ -90,6 +90,32 @@ module control_unit (
                             alu_control = 6'b111000; // SRLI or SRAI operation 
                         end
                         default : ; 
+                endcase
+            end
+            Control_Transfer: begin
+                case (funct3)
+                    3'b000: begin
+                       jmp = 1'b1; 
+                    end
+                    3'b001: begin
+                        beq = 1'b1;
+                    end
+                    3'b010: begin
+                        bneq: 1'b1;
+                    end
+                    3'b011: begin
+                        blt = 1'b1;
+                    end
+                    3'b100: begin
+                        bltu = 1'b1;
+                    end
+                    3'b101: begin
+                        bge = 1'b1;
+                    end
+                    3'b110: begin
+                        bgeu = 1'b1;
+                    end
+                    default: ;
                 endcase
             end
             

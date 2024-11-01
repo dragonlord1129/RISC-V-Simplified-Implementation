@@ -5,7 +5,7 @@ module alu (
     input [11:0] imm_val,
    
 
-    output reg [31:0] result
+    output reg [31:0] result,
 );
      reg [4:0] shft_amnt;
      always @(*) begin
@@ -67,8 +67,7 @@ module alu (
                end else if (imm_val == 0100000) begin
                     result = rs1 >>> shft_amnt;
                end
-           end
-           
+           end          
         end
         endcase
     end
