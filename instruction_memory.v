@@ -156,7 +156,7 @@ Hence the instruction becomes  (0100 000)(0 0010) (0000 1)(000 - 111) (0001 1)(0
             memory[70] = 8'h02;
             memory[69] = 8'h72;
             memory[68] = 8'hCD;
-//////////////////////////Control Transfer Instructions//////////////
+//////////////////////////Control Transfer and Load Instructions//////////////
 // JALR = 0x002080C5
             memory[75] = 8'h00;
             memory[74] = 8'h00;
@@ -192,6 +192,11 @@ Hence the instruction becomes  (0100 000)(0 0010) (0000 1)(000 - 111) (0001 1)(0
             memory[98] = 8'h00;
             memory[97] = 8'hE1;
             memory[96] = 8'h55;
+// LW = 0x0000F155
+            memory[103] = 8'h00;
+            memory[102] = 8'h00;
+            memory[101] = 8'hE1;
+            memory[100] = 8'h55;
         end
     end
 endmodule

@@ -11,7 +11,7 @@ module control_unit (
 );
     parameter R_type = 7'b0110011;
     parameter I_type = 7'b1001100;
-    parameter Control_Transfer = 7'b1010101;
+    parameter Control_Transfer_Load = 7'b1010101;
 
     always @(reset) begin
         if(reset) alu_control = 0;
@@ -92,7 +92,7 @@ module control_unit (
                         default : ; 
                 endcase
             end
-            Control_Transfer: begin
+            Control_Transfer_Load: begin
                 case (funct3)
                     3'b000: begin
                        jmp = 1'b1; 
