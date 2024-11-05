@@ -6,12 +6,12 @@ module control_unit (
 
     output reg [5:0] alu_control, //ALU
     output reg beq, bneq, blt, bltu, bge, bgeu, //Branch
-    output reg lb, lui, sw, // Load and Store
+    output reg lw, lwi, sw, // Load and Store
     output reg jmp
 );
     parameter R_type = 7'b0110011;
     parameter I_type = 7'b1001100;
-    parameter Control_Transfer_Load = 7'b1010101;
+    parameter Control_Transfer_Load_Store = 7'b1010101;
 
     always @(reset) begin
         if(reset) alu_control = 0;
@@ -92,7 +92,7 @@ module control_unit (
                         default : ; 
                 endcase
             end
-            Control_Transfer_Load: begin
+            Control_Transfer_Load_Store: begin
                 case (funct3)
                     3'b000: begin
                        jmp = 1'b1; 
@@ -114,6 +114,19 @@ module control_unit (
                     end
                     3'b110: begin
                         bgeu = 1'b1;
+                    end
+                    3'b111: begin
+                        case (funct7)
+                            7'b1111111: begin
+                                lwi = 1'b1;
+                            end
+                            7'b0001000: begin
+                                sw = 1'b1;
+                            end
+                            7'b0000000: begin
+                                lw = 1'b1;
+                            end
+                        endcase
                     end
                     default: ;
                 endcase

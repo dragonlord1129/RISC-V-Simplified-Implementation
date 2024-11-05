@@ -195,8 +195,18 @@ Hence the instruction becomes  (0100 000)(0 0010) (0000 1)(000 - 111) (0001 1)(0
 // LW = 0x0000F155
             memory[103] = 8'h00;
             memory[102] = 8'h00;
-            memory[101] = 8'hE1;
+            memory[101] = 8'hF1;
             memory[100] = 8'h55;
+// LWI = 0xFF00F155
+            memory[107] = 8'hFF;
+            memory[106] = 8'h00;
+            memory[105] = 8'hF1;
+            memory[104] = 8'h55;
+// SW = 0x1000F155
+            memory[111] = 8'h10;
+            memory[110] = 8'h00;
+            memory[109] = 8'hF1;
+            memory[108] = 8'h55;
         end
     end
 endmodule
