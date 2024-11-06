@@ -75,3 +75,7 @@ This project is open-source and distributed under the MIT License. See `LICENSE`
 ### Acknowledgments
 - The RISC-V architecture specification, which forms the foundation of this project.
 - Contributors and open-source community for resources and inspiration.
+
+### Document for proper understanding of the material:
+- Original: https://riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.pdf
+- Simplified: https://docs.google.com/document/d/1U1Zp0nigoKpJPG7btRdDsvlIT8jD9YzA6aiCQ0WjkXw/edit?tab=t.0
