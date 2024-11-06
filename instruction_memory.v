@@ -4,7 +4,7 @@ module instruction_memory (
 
     output [31:0] instruction_code
 );
-    reg [8:0] memory [127:0]; 
+    reg [8:0] memory [111:0]; 
     assign instruction_code <= {memory[pc+3], memory[pc+2], memory[pc+1], memory[pc]};
 
     always @(posedge clk ) begin

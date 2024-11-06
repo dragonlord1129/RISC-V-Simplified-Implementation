@@ -2,9 +2,10 @@ module register_file (
     input clk, reset,
     input [4:0] rs1, rs2, rd,
     input [31:0] write_data_dm, // Data coming from memory
-    input lw, lwi_control, jmp, sw,
+    input lw, lwi, jmp, sw,
     input [11:0] lw_imm_val, // Immediate offset for load word
     input [31:0] return_address,
+    input beq, bneq, blt, bltu, bge, bgeu,
 
     output [31:0] src1, src2,
     output [4:0] read_data_addr_dm,
@@ -13,6 +14,7 @@ module register_file (
 );
     reg [31:0] reg_mem[31:0];
     integer i;
+    reg branch;
 
     assign read_data_addr_dm = rd;
     assign effective_value = reg_mem[rs1] + lw_imm_val; // Calculate effective address
@@ -30,7 +32,7 @@ module register_file (
             end
             if (sw) begin
                 data_out_dm = reg_mem[rs1]; // Store Word
-            end else if (lwi_control) begin
+            end else if (lwi) begin
                 reg_mem[rd] = effective_value; // Load immediate address directly
             end else if (jmp) begin
                 reg_mem[rd] = return_address; // Jump Address
