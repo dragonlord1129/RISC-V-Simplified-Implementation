@@ -1,5 +1,3 @@
-`timescale 1ns / 1ps
-
 module top_tb;
     // Declare signals to connect to the top module
     reg clk;
