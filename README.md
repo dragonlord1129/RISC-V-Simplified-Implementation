@@ -43,7 +43,6 @@ The processor includes the following components:
 ├── alu.v               # ALU for executing arithmetic and logical operations
 ├── register_file.v     # Register file for reading/writing registers
 ├── instruction_memory.v # Instruction memory
-└── testbench.v         # Testbench for simulation
 ```
 
 ### Testbench
