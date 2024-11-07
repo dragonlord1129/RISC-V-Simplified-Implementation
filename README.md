@@ -55,8 +55,11 @@ A testbench is provided to simulate the processor's operation. It sets up the pr
 
 ### Running the Simulation
 1. **Simulation Tool**: Use your preferred simulation tool (e.g. GTKWAVE) to run the testbench.
-2. **Compile**: Compile all the Verilog files (including `top.v`, `instruction_fetch_unit.v`, etc.) and the testbench. using the command:
- 'iverilog -o top top_tb.v top.v instruction_fetch_unit.v instruction_memory.v control_unit.v alu.v register_file.v'
+2. **Compile**: Compile all the Verilog files (including `top.v`, `instruction_fetch_unit.v`, etc.) and the testbench.
+Comands:
+`iverilog -o top top_tb.v top.v instruction_fetch_unit.v instruction_memory.v control_unit.v alu.v register_file.v`
+`vvp top`
+`gtkwave top_tb.vcd`
 3. **Run**: Simulate the design and monitor the output to ensure correct operation.
 
 ### Known Limitations
