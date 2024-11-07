@@ -17,25 +17,35 @@ module register_file (
     reg branch;
 
     assign read_data_addr_dm = rd;
-    assign effective_value = reg_mem[rs1] + lw_imm_val; // Calculate effective address
+    assign effective_value = reg_mem[rs1] + {{20{lw_imm_val[11]}}, lw_imm_val}; // Sign-extend lw_imm_val to 32 bits
 
-    always @(posedge clk) begin
+    always @(posedge clk or posedge reset) begin
         if (reset) begin
             // Initialize all registers to 0
             for (i = 0; i < 32; i = i + 1) begin
-                reg_mem[i] = 0;
+                reg_mem[i] <= 32'b0;
             end
-            data_out_dm = 0; // Reset data_out_dm
+            data_out_dm <= 32'b0; // Reset data_out_dm
+            branch <= 1'b0;
         end else begin
+            // Load Word
             if (lw) begin
-                reg_mem[rd] = write_data_dm; // Load from memory to register
+                reg_mem[rd] <= write_data_dm; // Load from memory to register
             end
+
+            // Store Word
             if (sw) begin
-                data_out_dm = reg_mem[rs1]; // Store Word
-            end else if (lwi) begin
-                reg_mem[rd] = effective_value; // Load immediate address directly
-            end else if (jmp) begin
-                reg_mem[rd] = return_address; // Jump Address
+                data_out_dm <= reg_mem[rs1]; // Store the value in src1 to data_out_dm
+            end 
+
+            // Load Immediate
+            if (lwi) begin
+                reg_mem[rd] <= effective_value; // Load immediate address directly
+            end 
+
+            // Jump Operation
+            if (jmp) begin
+                reg_mem[rd] <= return_address; // Store the jump return address in rd
             end
         end
     end
